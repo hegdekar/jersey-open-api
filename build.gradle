@@ -1,0 +1,56 @@
+plugins {
+    id 'war'
+    id 'eclipse-wtp'
+
+}
+
+repositories {
+    mavenCentral()
+}
+
+def jerseyVersion = '2.31'
+def swaggerVersion = '2.1.2'
+
+dependencies {
+
+	// Jersey Dependencies
+	// https://mvnrepository.com/artifact/org.glassfish.jersey.containers/jersey-container-servlet
+	implementation group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet', version: jerseyVersion
+	
+	// https://mvnrepository.com/artifact/org.glassfish.jersey.inject/jersey-hk2
+	implementation group: 'org.glassfish.jersey.inject', name: 'jersey-hk2', version: jerseyVersion
+	
+	// https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-json-binding
+	implementation group: 'org.glassfish.jersey.media', name: 'jersey-media-json-binding', version: jerseyVersion
+	
+	//Utility dependencies
+	// https://mvnrepository.com/artifact/org.json/json
+	implementation group: 'org.json', name: 'json', version: '20200518'
+	
+	// Swagger Dependencies
+	// https://mvnrepository.com/artifact/io.swagger.core.v3/swagger-jaxrs2
+	implementation group: 'io.swagger.core.v3', name: 'swagger-jaxrs2', version: swaggerVersion
+	
+	// https://mvnrepository.com/artifact/io.swagger.core.v3/swagger-jaxrs2-servlet-initializer
+	implementation group: 'io.swagger.core.v3', name: 'swagger-jaxrs2-servlet-initializer', version: swaggerVersion
+	
+	// JDK 9+ Dependencies
+	// https://mvnrepository.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api
+	implementation group: 'jakarta.xml.bind', name: 'jakarta.xml.bind-api', version: '2.3.3'
+	
+	// https://mvnrepository.com/artifact/com.sun.xml.bind/jaxb-impl
+	runtimeOnly group: 'com.sun.xml.bind', name: 'jaxb-impl', version: '2.3.3'
+	
+    // Use JUnit Jupiter API for testing.
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
+
+    // Use JUnit Jupiter Engine for testing.
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.0'
+}
+
+project.webAppDirName = 'WebContent'
+
+test {
+    // Use junit platform for unit tests
+    useJUnitPlatform()
+}
